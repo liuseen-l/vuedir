@@ -39,10 +39,6 @@
       ]
     },
     "resolveJsonModule": true,
-    "types": [
-      "vitest",
-      "@types/web-bluetooth"
-    ],
     "strict": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
@@ -56,9 +52,6 @@
   "include": [
     "*.ts",
     "packages",
-    "packages/.vitepress/components/*.vue",
-    "packages/.vitepress/*.ts",
-    "meta",
     "vitest.config.ts"
   ],
 }
