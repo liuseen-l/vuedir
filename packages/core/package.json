@@ -1,12 +1,40 @@
 {
   "name": "@vuedir/core",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "vue-dir",
+    "utils"
+  ],
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/es/index.d.ts",
+      "import": "./dist/es/index.mjs"
+    },
+    "./dist/es": {
+      "types": "./dist/es/index.d.ts",
+      "import": "./dist/es/index.mjs"
+    },
+    "./dist/es/*.mjs": {
+      "types": "./dist/es/*.d.ts",
+      "import": "./dist/es/*.mjs"
+    },
+    "./dist/es/*": {
+      "types": [
+        "./dist/es/*/index.d.ts"
+      ],
+      "import": [
+        "./dist/es/*/index.mjs"
+      ]
+    },
+    "./*": "./dist/*"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "main": "./dist/es/index.mjs",
+  "module": "./dist/es/index.mjs",
+  "types": "./dist/es/index.d.ts"
 }

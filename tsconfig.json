@@ -10,15 +10,15 @@
     ],
     "baseUrl": ".",
     "rootDir": ".",
-    "module": "esnext",
+    "module": "ESNext",
     "moduleResolution": "Bundler",
     "paths": {
-      "@vuedir/core": [
-        "./packages/core/index.ts"
-      ],
-      "@vuedir/core/*": [
-        "./packages/core/*"
-      ],
+      // "@vuedir/core": [
+      //   "./packages/core/index.ts"
+      // ],
+      // "@vuedir/core/*": [
+      //   "./packages/core/*"
+      // ],
       "@vuedir/shared": [
         "./packages/shared/index.ts"
       ],
@@ -31,8 +31,6 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "noUnusedLocals": true,
-    "declaration": true,
-    "declarationDir": "./types",
     "esModuleInterop": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
@@ -42,4 +40,9 @@
     "packages",
     "vitest.config.ts"
   ],
+  "exclude": [
+    "node_modules",
+    "**/*.md",
+    "**/dist",
+  ]
 }
