@@ -1,48 +1,49 @@
-{
-  "compilerOptions": {
-    "target": "es2020",
-    "jsx": "preserve",
-    "lib": [
-      "ESNext",
-      "DOM",
-      "DOM.Iterable",
-      "webworker"
-    ],
-    "baseUrl": ".",
-    "rootDir": ".",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "paths": {
-      // "@vuedir/core": [
-      //   "./packages/core/index.ts"
-      // ],
-      // "@vuedir/core/*": [
-      //   "./packages/core/*"
-      // ],
-      "@vuedir/shared": [
-        "./packages/shared/index.ts"
+  {
+    "compilerOptions": {
+      "target": "es2020",
+      "jsx": "preserve",
+      "lib": [
+        "ESNext",
+        "DOM",
+        "DOM.Iterable",
+        "webworker"
       ],
-      "@vuedir/shared/*": [
-        "./packages/shared/*"
-      ]
+      "baseUrl": ".",
+      "rootDir": ".",
+      "module": "ESNext",
+      "moduleResolution": "Bundler",
+      "paths": {
+        // "@vuedir/core": [
+        //   "./packages/core/index.ts"
+        // ],
+        // "@vuedir/core/*": [
+        //   "./packages/core/*"
+        // ],
+        "@vuedir/shared": [
+          "./packages/shared/index.ts"
+        ],
+        "@vuedir/shared/*": [
+          "./packages/shared/*"
+        ]
+      },
+      "resolveJsonModule": true,
+      "declaration": true,
+      "strict": true,
+      "strictFunctionTypes": true,
+      "strictNullChecks": true,
+      "noUnusedLocals": true,
+      "esModuleInterop": true,
+      "skipDefaultLibCheck": true,
+      "skipLibCheck": true
     },
-    "resolveJsonModule": true,
-    "strict": true,
-    "strictFunctionTypes": true,
-    "strictNullChecks": true,
-    "noUnusedLocals": true,
-    "esModuleInterop": true,
-    "skipDefaultLibCheck": true,
-    "skipLibCheck": true
-  },
-  "include": [
-    "*.ts",
-    "packages",
-    "vitest.config.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.md",
-    "**/dist",
-  ]
-}
+    "include": [
+      "*.ts",
+      "packages",
+      "vitest.config.ts"
+    ],
+    "exclude": [
+      "node_modules",
+      "**/*.md",
+      "**/dist",
+    ]
+  }

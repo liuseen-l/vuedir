@@ -24,15 +24,7 @@
       "types": "./dist/es/*.d.ts",
       "import": "./dist/es/*.mjs"
     },
-    "./dist/es/*": {
-      "types": [
-        "./dist/es/*/index.d.ts"
-      ],
-      "import": [
-        "./dist/es/*/index.mjs"
-      ]
-    },
-    "./*": "./dist/*"
+    "./*": "./*"
   },
   "main": "./dist/es/index.mjs",
   "module": "./dist/es/index.mjs",

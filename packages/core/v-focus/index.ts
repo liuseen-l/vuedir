@@ -1,2 +1,10 @@
-export const vFocus = 1
+import { a } from './const'
+console.log(a);
 
+export const vFocus = {
+  mounted: (el: any) => el.focus()
+}
+
+export {
+  a
+}

@@ -1,48 +1,59 @@
-import path from 'node:path'
+import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import type { RollupOptions } from 'rollup'
+import type { OutputOptions, RollupOptions } from 'rollup'
 import typescript from '@rollup/plugin-typescript'
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
+import fg from 'fast-glob'
 import dts from 'rollup-plugin-dts'
+import esbuild from 'rollup-plugin-esbuild'
 
+const __dirname = dirname(fileURLToPath(import.meta.url))
 const configs: RollupOptions[] = []
-// configs.push({
-//   input: 'packages/core/index.ts',
-//   output: [
-//     {
-//       dir: 'packages/core/dist/es',
-//       format: 'es',
-//       entryFileNames: '[name].mjs',
-//       chunkFileNames: '[name]-[hash].mjs',
-//       preserveModules: true,
-//       preserveModulesRoot: path.resolve(__dirname, 'packages/core'),
-//     },
+const packages: string[] = []
+const rootDir = __dirname
 
-//   ],
-//   plugins: [typescript()],
-// })
+packages.push(
+  ...fg
+    .sync('*', {
+      cwd: resolve(`${rootDir}/packages`),
+      onlyDirectories: true,
+      ignore: ['shared']
+    })
+)
 
-configs.push({
-  input: 'packages/core/index.ts',
-  output: [
-    {
-      dir: 'packages/core/dist/es',
-      format: 'es',
-      preserveModules: true,
-      preserveModulesRoot: path.resolve(__dirname, 'packages'),
-    },
 
-  ],
-  plugins: [dts(), (() => ({
-    name: 'rollup-plugin-resolveDts',
-    renderChunk(_code, chunk) {
-      if (chunk.fileName === 'core/index.d.ts') {
-        return {
-          code: `export { vFocus } from './v-focus';export { vLock } from './v-lock';`
-        }
+for (const pkgName of packages) {
+  const input = resolve(rootDir, `packages/${pkgName}/index.ts`)
+  const output: OutputOptions[] = []
+
+  output.push({
+    dir: resolve(rootDir, `packages/${pkgName}/dist/es`),
+    format: 'es',
+    entryFileNames: 'index.mjs',
+  })
+
+  output.push({
+    dir: resolve(rootDir, `packages/${pkgName}/dist/cjs`),
+    format: 'cjs',
+    entryFileNames: 'index.cjs',
+  })
+
+  configs.push({
+    input,
+    output,
+    plugins: [esbuild()],
+  })
+
+  configs.push({
+    input,
+    output: [
+      { file: resolve(rootDir, `packages/${pkgName}/dist/es/index.d.ts`), },
+      {
+        file: resolve(rootDir, `packages/${pkgName}/dist/cjs/index.d.cts`),
       }
-    }
-  }))()],
-})
+    ],
+    plugins: [dts()],
+  })
+}
+
 
 export default configs
