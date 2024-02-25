@@ -1,7 +1,6 @@
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { OutputOptions, RollupOptions } from 'rollup'
-import typescript from '@rollup/plugin-typescript'
 import fg from 'fast-glob'
 import dts from 'rollup-plugin-dts'
 import esbuild from 'rollup-plugin-esbuild'
@@ -20,21 +19,18 @@ packages.push(
     })
 )
 
-
 for (const pkgName of packages) {
   const input = resolve(rootDir, `packages/${pkgName}/index.ts`)
   const output: OutputOptions[] = []
 
   output.push({
-    dir: resolve(rootDir, `packages/${pkgName}/dist/es`),
+    file: resolve(rootDir, `packages/${pkgName}/dist/index.mjs`),
     format: 'es',
-    entryFileNames: 'index.mjs',
   })
 
   output.push({
-    dir: resolve(rootDir, `packages/${pkgName}/dist/cjs`),
+    file: resolve(rootDir, `packages/${pkgName}/dist/index.cjs`),
     format: 'cjs',
-    entryFileNames: 'index.cjs',
   })
 
   configs.push({
@@ -46,9 +42,9 @@ for (const pkgName of packages) {
   configs.push({
     input,
     output: [
-      { file: resolve(rootDir, `packages/${pkgName}/dist/es/index.d.ts`), },
+      { file: resolve(rootDir, `packages/${pkgName}/dist/index.d.ts`), },
       {
-        file: resolve(rootDir, `packages/${pkgName}/dist/cjs/index.d.cts`),
+        file: resolve(rootDir, `packages/${pkgName}/dist/index.d.cts`),
       }
     ],
     plugins: [dts()],
