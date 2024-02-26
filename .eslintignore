@@ -3,3 +3,4 @@ node_modules
 ci.yml
 .eslintcache
 *.md
+package.json
