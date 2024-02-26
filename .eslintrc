@@ -21,7 +21,7 @@
   "overrides": [
     {
       "files": [
-        "commitlint.config.js"
+        "commitlint.config.cjs"
       ],
       "rules": {
         "@typescript-eslint/no-var-requires": 0
