@@ -39,7 +39,7 @@
     "vue": "^3.4.19"
   },
   "lint-staged": {
-    "*.{js,ts,tsx,vue,md}": [
+    "*.{js,ts,tsx,vue,md,json,jsx}": [
       "eslint --fix"
     ]
   }
