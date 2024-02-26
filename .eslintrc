@@ -1,5 +1,35 @@
 {
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
   "extends": [
-    "@antfu"
-  ]
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:vue/vue3-recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "parser": "@typescript-eslint/parser",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "vue"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "commitlint.config.js"
+      ],
+      "rules": {
+        "@typescript-eslint/no-var-requires": 0
+      }
+    }
+  ],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": 1,
+    "@typescript-eslint/no-explicit-any": 0
+  }
 }
