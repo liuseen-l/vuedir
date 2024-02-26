@@ -1,5 +1,4 @@
-import { a } from './const'
-console.log(a);
+import { a } from "./const"
 
 export const vFocus = {
   mounted: (el: any) => el.focus()
