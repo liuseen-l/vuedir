@@ -4,5 +4,5 @@ import { vFocus } from '@vuedir/core'
 </script>
 
 <template>
-  <input v-focus />
+  <input v-focus>
 </template>
