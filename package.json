@@ -10,7 +10,7 @@
     "build": "rollup --config=rollup.config.ts --configPlugin=rollup-plugin-esbuild",
     "play": "pnpm --filter=@vuedir/vite dev",
     "prepare": "husky install",
-    "lint": "eslint --ext .vue,.js,.ts,.jsx,.tsx,.md,.json . --max-warnings 0 --cache"
+    "lint": "eslint --ext .vue,.js,.ts,.jsx,.tsx,.md,.json . --cache"
   },
   "keywords": [],
   "author": "",
