@@ -10,6 +10,7 @@
   "main": "index.js",
   "scripts": {
     "build": "rollup --config=rollup.config.ts --configPlugin=rollup-plugin-esbuild",
+    "build:dev": "rollup --config=rollup.config.ts --configPlugin=rollup-plugin-esbuild --watch",
     "play": "pnpm --filter=@vuedir/vite dev",
     "prepare": "husky install",
     "lint": "eslint ."

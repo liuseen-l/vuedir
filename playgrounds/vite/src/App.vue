@@ -1,6 +1,6 @@
 <script setup>
-import { vFocus } from '@vuedir/core'
-
+import { useVFocus } from '@vuedir/core'
+const vFocus = useVFocus()
 // 在模板中启用 v-focus
 </script>
 
