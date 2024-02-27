@@ -1,8 +1,8 @@
 {
   "name": "@vuedir/shared",
+  "type": "module",
   "version": "0.0.1",
   "description": "",
-  "type": "module",
   "author": "",
   "license": "ISC",
   "keywords": [],

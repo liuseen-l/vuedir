@@ -8,24 +8,9 @@
       "DOM.Iterable",
       "webworker"
     ],
-    "baseUrl": ".",
     "rootDir": ".",
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "paths": {
-      // "@vuedir/core": [
-      //   "./packages/core/index.ts"
-      // ],
-      // "@vuedir/core/*": [
-      //   "./packages/core/*"
-      // ],
-      "@vuedir/shared": [
-        "./packages/shared/index.ts"
-      ],
-      "@vuedir/shared/*": [
-        "./packages/shared/*"
-      ]
-    },
     "resolveJsonModule": true,
     "strict": true,
     "strictFunctionTypes": true,
@@ -38,6 +23,7 @@
   },
   "include": [
     "*.ts",
+    "*.vue",
     "packages",
     "vitest.config.ts"
   ],
