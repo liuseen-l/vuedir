@@ -15,8 +15,8 @@ packages.push(
     .sync('*', {
       cwd: resolve(`${rootDir}/packages`),
       onlyDirectories: true,
-      ignore: ['shared']
-    })
+      ignore: ['shared'],
+    }),
 )
 
 for (const pkgName of packages) {
@@ -42,14 +42,13 @@ for (const pkgName of packages) {
   configs.push({
     input,
     output: [
-      { file: resolve(rootDir, `packages/${pkgName}/dist/index.d.ts`), },
+      { file: resolve(rootDir, `packages/${pkgName}/dist/index.d.ts`) },
       {
         file: resolve(rootDir, `packages/${pkgName}/dist/index.d.cts`),
-      }
+      },
     ],
     plugins: [dts()],
   })
 }
-
 
 export default configs

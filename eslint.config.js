@@ -7,6 +7,6 @@ export default antfu(
     vue: true,
     jsonc: true,
     yaml: false,
-    markdown: false
-  }
+    markdown: false,
+  },
 )
