@@ -2,6 +2,7 @@
   "name": "@vuedir/core",
   "version": "0.0.1",
   "license": "MIT",
+  "type": "module",
   "keywords": [
     "vue",
     "vue-dir",
