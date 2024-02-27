@@ -8,6 +8,5 @@ export default antfu(
     jsonc: true,
     yaml: false,
     markdown: false
-  }, {
-}
+  }
 )
