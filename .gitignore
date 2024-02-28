@@ -12,4 +12,5 @@ cache
 coverage
 .eslintcache
 .vitepress/cache
-export-size.{md,json}
+export-size.md
+export-size.json
