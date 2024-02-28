@@ -4,15 +4,10 @@ import { getExportsSize } from 'export-size'
 import { filesize } from 'filesize'
 import fs from 'fs-extra'
 import { version } from '../package.json'
+import { packages } from '../meta/packages'
 import { rootDir } from './const'
 
 const packagesRoot = resolve(rootDir, 'packages')
-
-const meta = [
-  {
-    name: 'core',
-  },
-]
 
 async function resolvePkgJson(pkgName: string, isGen = true) {
   if (!isGen) {
@@ -25,7 +20,7 @@ async function resolvePkgJson(pkgName: string, isGen = true) {
 }
 
 async function run() {
-  for (const pkg of meta)
+  for (const pkg of packages)
     await resolvePkgJson(pkg.name)
 
   let md = '# Export size\n\n'
@@ -39,7 +34,7 @@ async function run() {
   md += 'Depends on the bundler and minifier you use, the final result might vary, this list is for reference only.'
   md += '\n\n'
 
-  for (const pkg of meta) {
+  for (const pkg of packages) {
     const { exports, packageJSON } = await getExportsSize({
       pkg: `./packages/${pkg.name}/dist`,
       output: false,
@@ -61,8 +56,7 @@ async function run() {
 
   md = md.replace(/\r\n/g, '\n')
 
-  // await fs.remove(join(packagesRoot, 'shared/index.mjs'))
-  for (const pkg of meta)
+  for (const pkg of packages)
     await resolvePkgJson(pkg.name, false)
 
   await fs.writeFile('packages/export-size.md', md, 'utf-8')
