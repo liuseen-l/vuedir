@@ -14,7 +14,7 @@ const meta = [
   },
 ]
 
-async function resolvePkgJson(pkgName: string, isGen: boolean = true) {
+async function resolvePkgJson(pkgName: string, isGen = true) {
   if (!isGen) {
     await fs.remove(resolve(packagesRoot, pkgName, 'dist/package.json'))
     return
