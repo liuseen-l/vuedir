@@ -5,9 +5,9 @@ export default antfu(
     typescript: true,
     vue: true,
     jsonc: true,
-    jsx: false,
-    yaml: false,
-    markdown: false,
+    yaml: true,
+    jsx: true,
+    markdown: true,
     ignores: [
       ' **/dist',
       '**/node_modules',
