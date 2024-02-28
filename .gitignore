@@ -12,3 +12,4 @@ cache
 coverage
 .eslintcache
 .vitepress/cache
+export-size.*
