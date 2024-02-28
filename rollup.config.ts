@@ -1,14 +1,12 @@
-import { dirname, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { resolve } from 'node:path'
 import type { OutputOptions, RollupOptions } from 'rollup'
 import fg from 'fast-glob'
 import dts from 'rollup-plugin-dts'
 import esbuild from 'rollup-plugin-esbuild'
+import { rootDir } from './scripts/const'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
 const configs: RollupOptions[] = []
 const packages: string[] = []
-const rootDir = __dirname
 
 packages.push(
   ...fg

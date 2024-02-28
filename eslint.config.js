@@ -2,6 +2,7 @@ import antfu from '@antfu/eslint-config'
 
 export default antfu(
   {
+    formatters: true,
     typescript: true,
     vue: true,
     jsonc: true,
@@ -11,6 +12,8 @@ export default antfu(
     ignores: [
       ' **/dist',
       '**/node_modules',
+      '**/*.svg',
+      '**/cache',
     ],
   },
 )
