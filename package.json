@@ -25,6 +25,7 @@
     "@types/node": "^20.11.20",
     "bumpp": "^9.3.0",
     "eslint": "^8.57.0",
+    "eslint-plugin-format": "^0.1.0",
     "esno": "^4.0.0",
     "export-size": "^0.7.0",
     "fast-glob": "^3.3.2",
