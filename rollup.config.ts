@@ -1,24 +1,17 @@
 import { resolve } from 'node:path'
 import type { OutputOptions, RollupOptions } from 'rollup'
-import fg from 'fast-glob'
 import dts from 'rollup-plugin-dts'
 import esbuild from 'rollup-plugin-esbuild'
 import { rootDir } from './scripts/const'
+import { packages } from './meta/packages'
 
 const configs: RollupOptions[] = []
-const packages: string[] = []
 
-packages.push(
-  ...fg
-    .sync('*', {
-      cwd: resolve(`${rootDir}/packages`),
-      onlyDirectories: true,
-      ignore: ['shared'],
-    }),
-)
+for (const { name: pkgName, build, external } of packages) {
+  if (!build)
+    continue
 
-for (const pkgName of packages) {
-  const input = resolve(rootDir, `packages/${pkgName}/index.ts`)
+  const input = resolve(rootDir, `packages/${pkgName}/src/index.ts`)
   const output: OutputOptions[] = []
 
   output.push({
@@ -35,6 +28,7 @@ for (const pkgName of packages) {
     input,
     output,
     plugins: [esbuild()],
+    external: [...(external || [])],
   })
 
   configs.push({

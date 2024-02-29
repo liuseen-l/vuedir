@@ -1,11 +1,18 @@
 <script setup>
-import { useVFocus } from '@vuedir/core'
+import { vDebounce } from '@vuedir/core'
 
-const vFocus = useVFocus()
-
+const obj = {
+  time: 1000,
+  callback: (res) => {
+    console.log(res)
+  },
+  customCallback: () => {
+    return 1
+  },
+}
 // 在模板中启用 v-focus
 </script>
 
 <template>
-  <input v-focus>
+  <input v-focus v-debounce="obj">
 </template>

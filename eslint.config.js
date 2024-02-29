@@ -16,4 +16,12 @@ export default antfu(
       '**/cache',
     ],
   },
+  [
+    {
+      files: ['playgrounds/**'],
+      rules: {
+        'no-console': 'off',
+      },
+    },
+  ],
 )
