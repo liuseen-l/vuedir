@@ -1,22 +1,22 @@
 import { defineDirective } from '@vuedir/shared'
 
 export const vDebounce = defineDirective({
-  mounted(el, binding) {
-    let timer: any
+  beforeMount(el, binding) {
+    let timer: NodeJS.Timeout
     const { time = 1000, callback, customCallback } = binding.value
     el.addEventListener('keyup', () => {
       if (timer)
         clearTimeout(timer)
 
-      timer = setTimeout(() => {
+      timer = setTimeout(async () => {
         if (customCallback) {
-          const res = customCallback()
+          const res = await customCallback()
           callback && callback(res)
         }
       }, time)
     })
   },
-  // unmounted(el) {
-  //   el = null
-  // },
+  beforeUnmount(_el) {
+    _el = null
+  },
 })
