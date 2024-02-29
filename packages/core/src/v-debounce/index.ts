@@ -1,5 +1,4 @@
 import { defineDirective } from '@vuedir/shared'
-import type { DebounceCUserConfig } from './type'
 
 export const vDebounce = defineDirective({
   mounted(el, binding) {
@@ -21,24 +20,3 @@ export const vDebounce = defineDirective({
   //   el = null
   // },
 })
-
-export function useVDebounce(config: DebounceCUserConfig = {}) {
-  const { time = 1000 } = config
-  let timer: any
-  const fn = (binding: any) => {
-    if (timer)
-      clearTimeout(timer)
-
-    timer = setTimeout(() => {
-      binding.value()
-    }, time)
-  }
-  return defineDirective({
-    mounted(el) {
-      el.addEventListener('keyup', fn)
-    },
-    unmounted(el) {
-      el.removeEventListener('keyup', fn)
-    },
-  })
-}

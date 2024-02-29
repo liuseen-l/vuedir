@@ -10,7 +10,6 @@ const obj = {
     return 1
   },
 }
-// 在模板中启用 v-focus
 </script>
 
 <template>
