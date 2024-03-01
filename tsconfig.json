@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2020",
+    "target": "ES2020",
     "jsx": "preserve",
     "lib": [
       "ESNext",
@@ -8,16 +8,24 @@
       "DOM.Iterable",
       "webworker"
     ],
+    "useDefineForClassFields": true,
     "rootDir": ".",
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "resolveJsonModule": true,
+    /* Bundler mode */
+    "allowImportingTsExtensions": true,
     "strict": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
+    "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
+    /* Linting */
+    "noUnusedParameters": true,
     "declaration": true,
+    "noEmit": true,
     "esModuleInterop": true,
+    "isolatedModules": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
