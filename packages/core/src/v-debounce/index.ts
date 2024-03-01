@@ -13,6 +13,7 @@ function genEventCallBack(_el: any, binding: any) {
       if (customCallback) {
         const res = await customCallback()
         callback && callback(res)
+        clearTimeout(timer)
       }
     }, time)
   }
@@ -36,7 +37,7 @@ function addEventListener(el: any, binding: any, type: string) {
 function removeEventListener(el: any, type: string) {
   const { fn, timer } = deps.get(el)
   el.removeEventListener(type, fn)
-  clearTimeout(timer)
+  timer && clearTimeout(timer)
 }
 
 export const vDebounce = defineDirective({
