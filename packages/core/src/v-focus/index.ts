@@ -6,12 +6,12 @@ export const vFocus = defineDirective({
     if (time) {
       const timer = setTimeout(() => {
         el.focus()
-        callback(el)
+        callback && callback(el)
         clearTimeout(timer)
       }, time)
       return
     }
     el.focus()
-    callback(el)
+    callback && callback(el)
   },
 })
