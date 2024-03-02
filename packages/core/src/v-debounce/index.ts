@@ -2,7 +2,7 @@ import { defineDirective } from '@vuedir/shared'
 
 const deps = new WeakMap()
 
-function genEventCallBack(_el: any, binding: any) {
+function genEventCallBack(el: any, binding: any) {
   let timer: NodeJS.Timeout | undefined
   const { time = 1000, callback, customCallback } = binding.value
 
@@ -12,7 +12,7 @@ function genEventCallBack(_el: any, binding: any) {
     timer = setTimeout(async () => {
       if (customCallback) {
         const res = await customCallback()
-        callback && callback(res)
+        callback && callback(el, res)
         clearTimeout(timer)
       }
     }, time)

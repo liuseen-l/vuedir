@@ -17,7 +17,7 @@ const show = ref(true)
 
 let obj = {
   time: 1000,
-  callback: (res) => {
+  callback: (_el, res) => {
     console.log(res)
   },
   customCallback: () => {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { vDebounce } from '@vuedir/core'
-import { defineProps, reactive } from 'vue'
+import { reactive } from 'vue'
 
 const _props = defineProps<{
   r: number
