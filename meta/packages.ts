@@ -6,14 +6,14 @@ export type MetaConfig = {
 
 export const packages: MetaConfig = [
   {
+    name: 'shared',
+    build: true,
+  },
+  {
     name: 'core',
     build: true,
     external: [
       '@vuedir/shared',
     ],
-  },
-  {
-    name: 'shared',
-    build: true,
   },
 ]
