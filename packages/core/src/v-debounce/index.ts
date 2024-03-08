@@ -1,6 +1,6 @@
 import { defineDirective } from '@vuedir/shared'
 
-const deps = new WeakMap()
+const deps = new Map()
 
 function genEventCallBack(el: any, binding: any) {
   let timer: NodeJS.Timeout | undefined
@@ -38,6 +38,7 @@ function removeEventListener(el: any, type: string) {
   const { fn, timer } = deps.get(el)
   el.removeEventListener(type, fn)
   timer && clearTimeout(timer)
+  deps.delete(el)
 }
 
 export const vDebounce = defineDirective({

@@ -21,6 +21,8 @@ export default antfu(
       files: ['playgrounds/**'],
       rules: {
         'no-console': 'off',
+        'vue/no-unused-vars': 'off',
+        'vue/no-sparse-arrays': 'off',
       },
     },
   ],

@@ -9,9 +9,18 @@
       "webworker"
     ],
     "useDefineForClassFields": true,
+    "baseUrl": ".",
     "rootDir": ".",
     "module": "ESNext",
     "moduleResolution": "Bundler",
+    "paths": {
+      "@vuedir/core": [
+        "./packages/core/src/index.ts"
+      ],
+      "@vueuse/shared": [
+        "./packages/shared/src/index.ts"
+      ]
+    },
     "resolveJsonModule": true,
     /* Bundler mode */
     "allowImportingTsExtensions": true,
