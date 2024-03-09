@@ -17,9 +17,10 @@
       "@vuedir/core": [
         "./packages/core/src/index.ts"
       ],
-      "@vueuse/shared": [
+      "@vuedir/shared": [
         "./packages/shared/src/index.ts"
-      ]
+      ],
+      "@vuedir/shared/*": ["./packages/shared/*"]
     },
     "resolveJsonModule": true,
     /* Bundler mode */

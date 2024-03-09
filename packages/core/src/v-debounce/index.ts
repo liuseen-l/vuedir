@@ -8,11 +8,9 @@ function genEventCallBack(_el: HTMLElement, binding: DirectiveBinding) {
   const { time = 1000, customCallback } = binding.value
 
   const fn = () => {
-    if (timer)
-      clearTimeout(timer)
+    clearTimeout(timer)
     timer = setTimeout(() => {
       customCallback && customCallback()
-      clearTimeout(timer)
     }, time)
   }
 

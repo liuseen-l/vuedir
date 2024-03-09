@@ -1,5 +1,5 @@
-import { defineDirective } from '@vuedir/shared'
 import type { DirectiveBinding } from 'vue'
+import { defineDirective } from '@vuedir/shared'
 
 const deps = new Map()
 
