@@ -1,8 +1,9 @@
 import { defineDirective } from '@vuedir/shared'
+import type { DirectiveBinding } from 'vue'
 
 const deps = new Map()
 
-function genEventCallBack(el: any, binding: any) {
+function genEventCallBack(el: HTMLElement, binding: DirectiveBinding) {
   let timer: NodeJS.Timeout | undefined
   const { time = 1000, callback, customCallback } = binding.value
 
@@ -28,13 +29,13 @@ function shouldUpdate(value: any, oldValue: any) {
   return value === oldValue
 }
 
-function addEventListener(el: any, binding: any, type: string) {
+function addEventListener(el: HTMLElement, binding: DirectiveBinding, type: string) {
   const obj = genEventCallBack(el, binding)
   el.addEventListener(type, obj.fn)
   deps.set(el, obj)
 }
 
-function removeEventListener(el: any, type: string) {
+function removeEventListener(el: HTMLElement, type: string) {
   const { fn, timer } = deps.get(el)
   el.removeEventListener(type, fn)
   timer && clearTimeout(timer)

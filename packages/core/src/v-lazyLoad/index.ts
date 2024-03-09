@@ -1,48 +1,51 @@
 import { defineDirective } from '@vuedir/shared'
 import type { DirectiveBinding } from 'vue'
 
-const deps = new WeakMap()
+const deps = new Map()
 
-function observe(el: HTMLImageElement, binding: DirectiveBinding) {
+function observeByIntersection(el: HTMLImageElement, binding: DirectiveBinding) {
   const targetUrl = binding.value
   const io = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      if (targetUrl)
-        el.src = targetUrl
-    }
+    if (entries[0].isIntersecting && targetUrl)
+      el.src = targetUrl
   })
   io.observe(el)
   deps.set(el, io)
 }
 
-function observeScroll(el: HTMLImageElement, binding: DirectiveBinding) {
-  const listenScroll = () => {
-    const windowHeight = document.documentElement.clientHeight
-    const top = el.getBoundingClientRect().top
-    const bottom = el.getBoundingClientRect().bottom
-    const targetUrl = binding.value
-    if (top - windowHeight < 0 && bottom > 0) {
-      if (targetUrl)
-        el.src = targetUrl
-    }
+function observeByScroll(el: HTMLImageElement, binding: DirectiveBinding) {
+  const targetUrl = binding.value
+  const fn = () => {
+    const root = document.documentElement
+    const { top, bottom } = el.getBoundingClientRect()
+    if (top - root.clientHeight < 0 && bottom > 0 && targetUrl)
+      el.src = targetUrl
   }
+  window.addEventListener('scroll', fn)
+  deps.set(el, fn)
+}
 
-  window.addEventListener('scroll', () => {
-    listenScroll()
-  })
+function observe(el: HTMLImageElement, binding: DirectiveBinding) {
+  if (IntersectionObserver)
+    observeByIntersection(el, binding)
+  else
+    observeByScroll(el, binding)
 }
 
 function unobserve(el: HTMLElement) {
   const io = deps.get(el)
-  io.unobserve(el)
+  if (IntersectionObserver)
+    io.unobserve(el)
+
+  else
+    window.removeEventListener('scroll', io)
+
   deps.delete(el)
 }
 
 export const vLazyLoad = defineDirective({
   created(el, binding) {
-    if (IntersectionObserver)
-      observe(el, binding)
-    observeScroll(el, binding)
+    observe(el, binding)
   },
   beforeUnmount(el) {
     unobserve(el)
