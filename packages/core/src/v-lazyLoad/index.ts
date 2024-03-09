@@ -36,7 +36,6 @@ function unobserve(el: HTMLElement) {
   const io = deps.get(el)
   if (IntersectionObserver)
     io.unobserve(el)
-
   else
     window.removeEventListener('scroll', io)
 

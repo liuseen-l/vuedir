@@ -16,14 +16,24 @@ export default antfu(
       '**/cache',
     ],
   },
-  [
-    {
-      files: ['playgrounds/**'],
-      rules: {
-        'no-console': 'off',
-        'vue/no-unused-vars': 'off',
-        'vue/no-sparse-arrays': 'off',
-      },
+  {
+    files: ['playgrounds/**'],
+    rules: {
+      'no-console': 'off',
+      'vue/no-unused-vars': 'off',
+      'vue/no-sparse-arrays': 'off',
     },
-  ],
+  },
+  {
+    rules: {
+      'ts/consistent-type-imports': [
+        'error',
+        {
+          fixStyle: 'inline-type-imports',
+          disallowTypeAnnotations: false,
+        },
+      ],
+      'ts/no-import-type-side-effects': 'error',
+    },
+  },
 )
