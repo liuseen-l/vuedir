@@ -3,19 +3,16 @@ import type { DirectiveBinding } from 'vue'
 
 const deps = new Map()
 
-function genEventCallBack(el: HTMLElement, binding: DirectiveBinding) {
+function genEventCallBack(_el: HTMLElement, binding: DirectiveBinding) {
   let timer: NodeJS.Timeout | undefined
-  const { time = 1000, callback, customCallback } = binding.value
+  const { time = 1000, customCallback } = binding.value
 
   const fn = () => {
     if (timer)
       clearTimeout(timer)
-    timer = setTimeout(async () => {
-      if (customCallback) {
-        const res = await customCallback()
-        callback && callback(el, res)
-        clearTimeout(timer)
-      }
+    timer = setTimeout(() => {
+      customCallback && customCallback()
+      clearTimeout(timer)
     }, time)
   }
 
@@ -57,3 +54,12 @@ export const vDebounce = defineDirective({
     removeEventListener(el, 'keyup')
   },
 })
+
+export type VDebounceValueOption = {
+  customCallback: () => unknown
+  time?: number
+} | (() => unknown)
+
+export function defineVDebounceValue(options: VDebounceValueOption) {
+  return options
+}

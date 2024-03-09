@@ -15,3 +15,9 @@ export const vFocus = defineDirective({
     callback && callback(el)
   },
 })
+
+export type VFocusValueOption = number
+
+export function defineVFocusValue(options: VFocusValueOption) {
+  return options
+}

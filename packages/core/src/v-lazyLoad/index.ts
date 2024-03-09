@@ -50,3 +50,9 @@ export const vLazyLoad = defineDirective({
     unobserve(el)
   },
 })
+
+export type VLazyLoadValueOption = string
+
+export function defineVLazyLoadValue(options: VLazyLoadValueOption) {
+  return options
+}
