@@ -1,7 +1,8 @@
-import { resolve } from 'node:path'
+import path from 'node:path'
 import type { OutputOptions, RollupOptions } from 'rollup'
 import dts from 'rollup-plugin-dts'
 import esbuild from 'rollup-plugin-esbuild'
+import resolve from '@rollup/plugin-node-resolve'
 import { rootDir } from './scripts/const'
 import { packages } from './meta/packages'
 
@@ -11,35 +12,36 @@ for (const { name: pkgName, build, external } of packages) {
   if (!build)
     continue
 
-  const input = resolve(rootDir, `packages/${pkgName}/src/index.ts`)
+  const input = path.resolve(rootDir, `packages/${pkgName}/src/index.ts`)
   const output: OutputOptions[] = []
 
   output.push({
-    file: resolve(rootDir, `packages/${pkgName}/dist/index.mjs`),
+    file: path.resolve(rootDir, `packages/${pkgName}/dist/index.mjs`),
     format: 'es',
   })
 
   output.push({
-    file: resolve(rootDir, `packages/${pkgName}/dist/index.cjs`),
+    file: path.resolve(rootDir, `packages/${pkgName}/dist/index.cjs`),
     format: 'cjs',
   })
 
   configs.push({
     input,
     output,
-    plugins: [esbuild()],
+    plugins: [esbuild(), resolve()],
     external: [...(external || [])],
+
   })
 
   configs.push({
     input,
     output: [
-      { file: resolve(rootDir, `packages/${pkgName}/dist/index.d.ts`) },
+      { file: path.resolve(rootDir, `packages/${pkgName}/dist/index.d.ts`) },
       {
-        file: resolve(rootDir, `packages/${pkgName}/dist/index.d.cts`),
+        file: path.resolve(rootDir, `packages/${pkgName}/dist/index.d.cts`),
       },
     ],
-    plugins: [dts()],
+    plugins: [dts(), resolve()],
   })
 }
 

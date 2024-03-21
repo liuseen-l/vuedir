@@ -24,5 +24,8 @@
   ],
   "dependencies": {
     "@vuedir/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "vue-draggable-plus": "^0.3.5"
   }
 }
