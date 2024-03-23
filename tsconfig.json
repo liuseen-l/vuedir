@@ -40,10 +40,9 @@
     "skipLibCheck": true
   },
   "include": [
-    "*.ts",
-    "*.vue",
     "packages",
-    "vitest.config.ts"
+    "playgrounds",
+    "*.ts"
   ],
   "exclude": [
     "node_modules",
